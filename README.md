@@ -2,7 +2,7 @@
 
 [qpetlover.cn](https://qpetlover.cn) 的主页源码，基于 [docsify](https://docsify.js.org/#/zh-cn/) 构建。
 
-## 文档修改指南
+## 文档修改指南（仓库开发者）
 
 代码地址：[https://github.com/cubenlp/docs](https://github.com/cubenlp/docs)，修改自动触发部署和更新：
 
