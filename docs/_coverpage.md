@@ -1,6 +1,5 @@
 ![logo](assets/imgs/pngs/QPetLover.png)
 
-# QPetLover 主页
 
 > 那些年陪伴我们的企鹅宠物们
  
