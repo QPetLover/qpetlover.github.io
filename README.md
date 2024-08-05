@@ -1,10 +1,10 @@
-# docs
+# QPet Lover 文档
 
-[qpetlover.cn](https://qpetlover.cn) 的主页源码，基于 [docsify](https://docsify.js.org/#/zh-cn/) 构建。
+欢迎来到 [qpetlover.cn](https://qpetlover.cn) 的文档仓库，基于 [mkdocs-material](https://github.com/squidfunk/mkdocs-material) 构建。
 
 ## 文档修改指南（仓库开发者）
 
-代码地址：[https://github.com/cubenlp/docs](https://github.com/cubenlp/docs)，修改自动触发部署和更新：
+代码地址：[https://github.com/QPetLover/qpetlover.github.io](https://github.com/QPetLover/qpetlover.github.io)，修改自动触发部署和更新：
 
 ```bash
 git clone git@github.com:QPetLover/qpetlover.github.io.git
@@ -16,21 +16,28 @@ git checkout -b mybranch
 git push -u origin mybranch
 ```
 
-文档结构如下：
+## 文档结构
 
 | 目录 | 说明 |
 | --- | --- |
 | `docs/` | 部署网页的源码位置 |
-| `docs/index.html` | 主页 |
+| `docs/index.md` | 主页 |
 | `docs/source/` | 文档正文 |
-| `docs/_navbar.md` | 顶部导航栏 |
-| `docs/_sidebar.md` | 文档的目录，与 `source` 内容对应 |
-| `docs/_coverpage.md` | 封面页 |
 | `docs/assets/` | 静态资源，如图片、样式等 |
 
 ## 本地预览
 
+要在本地预览文档，请确保已安装 `mkdocs` 和 `mkdocs-material`：
+
 ```bash
-npm i docsify-cli -g
-docsify serve docs
+pip install mkdocs mkdocs-material
+mkdocs serve
 ```
+
+## 贡献指南
+
+我们欢迎任何形式的贡献！如果你有任何建议或发现了问题，请提交 Issue 或 Pull Request。
+
+## 许可证
+
+本项目采用 [MIT 许可证](LICENSE)。
