@@ -25,5 +25,4 @@ jobs:
           restore-keys: |
             mkdocs-material-
       - run: pip install -r requirements.txt
-      - run: mike deploy --update-aliases latest
-      - run: mike set-default --message "Deploy latest version" latest
+      - run: mkdocs gh-deploy --force

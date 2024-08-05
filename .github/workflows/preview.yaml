@@ -3,6 +3,9 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - preview
 permissions:
   contents: write
   pull-requests: write
@@ -27,19 +30,20 @@ jobs:
           restore-keys: |
             mkdocs-material-
       - run: pip install -r requirements.txt
-      - run: mike deploy --update-aliases dev
-      - run: mike set-default --message "Deploy dev version" dev
+      - run: |
+          mike deploy dev -p
+          echo "Preview URL: https://qpetlover.cn/dev/" >> $GITHUB_STEP_SUMMARY
 
-      - name: Comment PR with Preview Link
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const { payload } = context;
-            const prNumber = payload.number;
-            const previewLink = `https://qpetlover.cn/dev/`;
-            github.rest.issues.createComment({
-              issue_number: prNumber,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `Preview available at: ${previewLink}`
-            });
+      # - name: Comment PR with Preview Link
+      #   uses: actions/github-script@v6
+      #   with:
+      #     script: |
+      #       const { payload } = context;
+      #       const prNumber = payload.number;
+      #       const previewLink = `https://qpetlover.cn/dev/`;
+      #       github.rest.issues.createComment({
+      #         issue_number: prNumber,
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         body: `Preview available at: ${previewLink}`
+      #       });
