@@ -30,7 +30,7 @@ git push -u origin mybranch
 要在本地预览文档，请确保已安装 `mkdocs` 和 `mkdocs-material`：
 
 ```bash
-pip install mkdocs mkdocs-material
+pip install -r requirements.txt
 mkdocs serve
 ```
 

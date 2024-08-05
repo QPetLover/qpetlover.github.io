@@ -1,50 +1,50 @@
-name: Preview Deployment
-
+name: preview
 on:
   pull_request:
     branches:
       - main
-
+  push:
+    branches:
+      - preview
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
-
-      - run: pip install mkdocs-material
-
-      - name: Build and Deploy Preview
-        run: |
-          mkdocs build
-          mkdir -p preview-site
-          mv site/* preview-site/
-          git checkout -b preview-${{ github.event.number }}
-          git add preview-site
-          git commit -m "Deploy preview for PR #${{ github.event.number }}"
-          git push origin preview-${{ github.event.number }} --force
-
-      - name: Comment PR with Preview Link
-        uses: actions/github-script@v6
+          python-version: 3.x
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+      - uses: actions/cache@v4
         with:
-          script: |
-            const { payload } = context;
-            const prNumber = payload.number;
-            const previewLink = `https://${{ github.repository_owner }}.github.io/${{ github.repository }}/preview-${prNumber}/`;
-            github.rest.issues.createComment({
-              issue_number: prNumber,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `Preview available at: ${previewLink}`
-            });
+          key: mkdocs-material-${{ env.cache_id }}
+          path: .cache
+          restore-keys: |
+            mkdocs-material-
+      - run: pip install -r requirements.txt
+      - run: |
+          git fetch origin
+          mike deploy dev -p
+          echo "Preview URL: https://qpetlover.cn/dev/" >> $GITHUB_STEP_SUMMARY
+
+      # - name: Comment PR with Preview Link
+      #   uses: actions/github-script@v6
+      #   with:
+      #     script: |
+      #       const { payload } = context;
+      #       const prNumber = payload.number;
+      #       const previewLink = `https://qpetlover.cn/dev/`;
+      #       github.rest.issues.createComment({
+      #         issue_number: prNumber,
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         body: `Preview available at: ${previewLink}`
+      #       });
