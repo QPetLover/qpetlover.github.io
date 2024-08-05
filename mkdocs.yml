@@ -59,6 +59,10 @@ extra_javascript:
 extra_css:
   - assets/css/custom.css
 
+extra:
+  version:
+    provider: mike
+
 nav:
   - 主页: index.md
   - 文档:
