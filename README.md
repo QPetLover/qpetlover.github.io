@@ -1,6 +1,6 @@
 # QPet Lover 文档
 
-欢迎来到 [qpetlover.cn](https://qpetlover.cn) 的文档仓库，基于 [mkdocs-material](https://github.com/squidfunk/mkdocs-material) 构建。
+[qpetlover.cn](https://qpetlover.cn) 的文档仓库，基于 [mkdocs-material](https://github.com/squidfunk/mkdocs-material) 构建。
 
 ## 文档修改指南（仓库开发者）
 
