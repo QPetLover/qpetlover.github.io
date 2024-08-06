@@ -25,4 +25,6 @@ jobs:
           restore-keys: |
             mkdocs-material-
       - run: pip install -r requirements.txt
-      - run: mkdocs gh-deploy --force
+      - run: |
+          git fetch origin
+          mike deploy latest -p
