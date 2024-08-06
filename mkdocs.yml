@@ -7,8 +7,8 @@ edit_uri: edit/main/docs/
 theme:
   name: material
   palette:
-    primary: green
-    accent: light green
+    primary: blue
+    accent: light blue
   font:
     text: Roboto
     code: Roboto Mono

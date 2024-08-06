@@ -25,8 +25,7 @@ git push
 本地预览：
 
 ```bash
-npm i docsify-cli -g
-docsify serve docs
+mkdocs serve
 ```
 
 ## 其他
