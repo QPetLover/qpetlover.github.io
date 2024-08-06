@@ -1,5 +1,5 @@
 site_name: QPet Lover
-site_url: https://qpetlover.cn
+site_url: https://qpetlover.cn/
 repo_url: https://github.com/QPetLover/qpetover.github.io
 repo_name: GitHub
 edit_uri: edit/main/docs/
@@ -58,6 +58,12 @@ extra_javascript:
 
 extra_css:
   - assets/css/custom.css
+
+extra:
+  version:
+    provider: mike
+    default: latest
+    alias: true
 
 nav:
   - 主页: index.md

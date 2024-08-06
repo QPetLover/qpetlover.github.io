@@ -38,7 +38,7 @@ jobs:
           script: |
             const { payload } = context;
             const prNumber = payload.number;
-            const baseUrl = 'https://leanprover.cn';
+            const baseUrl = 'https://qpetlover.cn';
             const previewLink = `${baseUrl}/dev/`;
             const comments = await github.rest.issues.listComments({
               issue_number: prNumber,
