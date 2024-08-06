@@ -3,9 +3,6 @@ on:
   pull_request:
     branches:
       - main
-  push:
-    branches:
-      - preview
 permissions:
   contents: write
   pull-requests: write
@@ -35,16 +32,25 @@ jobs:
           mike deploy dev -p
           echo "Preview URL: https://qpetlover.cn/dev/" >> $GITHUB_STEP_SUMMARY
 
-      # - name: Comment PR with Preview Link
-      #   uses: actions/github-script@v6
-      #   with:
-      #     script: |
-      #       const { payload } = context;
-      #       const prNumber = payload.number;
-      #       const previewLink = `https://qpetlover.cn/dev/`;
-      #       github.rest.issues.createComment({
-      #         issue_number: prNumber,
-      #         owner: context.repo.owner,
-      #         repo: context.repo.repo,
-      #         body: `Preview available at: ${previewLink}`
-      #       });
+      - name: Comment PR with Preview Link
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { payload } = context;
+            const prNumber = payload.number;
+            const baseUrl = 'https://leanprover.cn';
+            const previewLink = `${baseUrl}/dev/`;
+            const comments = await github.rest.issues.listComments({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            const existingComment = comments.data.find(comment => comment.body.includes(previewLink));
+            if (!existingComment) {
+              await github.rest.issues.createComment({
+                issue_number: prNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `Preview available at: ${previewLink}`
+              });
+            }
